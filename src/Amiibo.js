@@ -59,12 +59,10 @@ const Amiibo = () => {
         setAmiiboData({ loading: true });
         axios.get('https://www.amiiboapi.com/api/amiibo/?character=link')
             .then(res => {
-                console.log(res)
                 setAmiiboData({
                     loading: false,
                     data: res.data.amiibo
                 })
-                console.log(amiiboData.data)
             })
             .catch((error) => console.log(error))
     }
