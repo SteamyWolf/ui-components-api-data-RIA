@@ -95,7 +95,7 @@ const Amiibo = () => {
                             </CardActionArea>
                             <CardActions>
                                 <Button size="small" color="primary">
-                                    <a className={classes.button} href="#">Learn More</a>
+                                    <a className={classes.button} href="https://www.nintendo.com/" target="_blank">Learn More</a>
                                 </Button>
                             </CardActions>
                         </Card>
