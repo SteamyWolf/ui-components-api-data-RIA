@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <header className={classes.root}>
-        <img className={classes.img} alt="Link History Background Image" src="https://i.pinimg.com/originals/ed/96/e5/ed96e5b13349be8bec8cd09a7656c580.jpg"></img>
+        <img className={classes.img} alt="The History of Link in all Games" src="https://i.pinimg.com/originals/ed/96/e5/ed96e5b13349be8bec8cd09a7656c580.jpg"></img>
       </header>
      <Amiibo />
     </div>
