@@ -25,8 +25,11 @@ const Header = (props) => {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        News
+                        <Link to="/" className={classes.button}>The Legend of Zelda</Link>
                     </Typography>
+                    <Button>
+                        <Link to="/" className={classes.button}>Link's Amiibos</Link>
+                    </Button>
                     <Button color="inherit">
                             <Link to="/login" className={classes.button}>Login</Link>
                     </Button>

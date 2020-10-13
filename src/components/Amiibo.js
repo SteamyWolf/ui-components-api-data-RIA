@@ -10,6 +10,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import { useAmiiboContext } from '../contexts/AmiiboContext';
 
 
 const useStyles = makeStyles({
@@ -49,27 +50,7 @@ const useStyles = makeStyles({
 
 const Amiibo = () => {
     const classes = useStyles();
-
-    const [amiiboData, setAmiiboData] = useState({
-        loading: false,
-        data: []
-    })
-
-    const fetchAmiibo = () => {
-        setAmiiboData({ loading: true });
-        axios.get('https://www.amiiboapi.com/api/amiibo/?character=link')
-            .then(res => {
-                setAmiiboData({
-                    loading: false,
-                    data: res.data.amiibo
-                })
-            })
-            .catch((error) => console.log(error))
-    }
-
-    useEffect(() => {
-        fetchAmiibo();
-    }, [])
+    const amiiboData = useAmiiboContext()
 
     let link = null;
     if (amiiboData.loading === false) {
@@ -109,7 +90,7 @@ const Amiibo = () => {
 //MAIN RETURN STATEMENT
     return (
         <div>
-            <LinearProgress color="secondary" />
+            {amiiboData.loading && <LinearProgress color="secondary" />}
             {link}
         </div>
     )
