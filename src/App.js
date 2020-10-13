@@ -1,7 +1,13 @@
 import React from 'react';
 import './App.css';
-import Amiibo from './Amiibo';
 import { makeStyles } from '@material-ui/core/styles';
+import { AmiiboContextProvider } from './contexts/AmiiboContext';
+import Toolbar from './components/Header';
+import { Switch, Route } from 'react-router-dom';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Hero from './components/Hero';
+import Amiibo from './components/Amiibo';
 
 const useStyles = makeStyles({
   root: {
@@ -16,12 +22,15 @@ const useStyles = makeStyles({
 function App() {
   const classes = useStyles();
   return (
-    <div className="App">
-      <header className={classes.root}>
-        <img className={classes.img} alt="The History of Link in all Games" src="https://i.pinimg.com/originals/ed/96/e5/ed96e5b13349be8bec8cd09a7656c580.jpg"></img>
-      </header>
-     <Amiibo />
-    </div>
+    <AmiiboContextProvider>
+      <Hero />
+      <Toolbar />
+        <Switch>
+          <Route path='/login' component={Login} />
+          <Route path='/signup' component={Signup} />
+          <Route path='/' exact component={Amiibo} />
+        </Switch>
+    </AmiiboContextProvider>
   );
 }
 
