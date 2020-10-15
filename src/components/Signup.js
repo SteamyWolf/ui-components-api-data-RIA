@@ -1,8 +1,8 @@
 import { Button, TextField } from '@material-ui/core';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik } from 'formik';
-import { Link } from 'react-router-dom';
+import { useSignupFormContext } from '../contexts/SignupFormContext';
 
 
 const useStyles = makeStyles({
@@ -30,22 +30,13 @@ const useStyles = makeStyles({
 
 const Signup = () => {
     const classes = useStyles();
+    let formInfo;
 
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-        passwordMatch: ''
-    });
-
+    const formData = useSignupFormContext(formInfo);
+    
     return (
         <Formik initialValues={{ ...formData }} onSubmit={(data, { resetForm }) => {
-            console.log(data)
-            setFormData({
-                email: data.email,
-                password: data.password,
-                passwordMatch: data.passwordMatch
-            })
-            console.log(formData)
+            formInfo = data
             resetForm();
             }}>
             {({ values, handleChange, handleBlur, handleSubmit }) => (

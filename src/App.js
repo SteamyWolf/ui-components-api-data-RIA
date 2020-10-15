@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { AmiiboContextProvider } from './contexts/AmiiboContext';
+import { SignupFormContextProvider } from './contexts/SignupFormContext';
 import Header from './components/Header';
 import { Switch, Route } from 'react-router-dom';
 import Login from './components/Login';
@@ -10,15 +11,18 @@ import Amiibo from './components/Amiibo';
 
 function App() {
   return (
-    <AmiiboContextProvider>
-      <Header />
-      <Hero />
+    <SignupFormContextProvider>
+      <AmiiboContextProvider>
+        <Header />
+        <Hero />
         <Switch>
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup} />
           <Route path='/' exact component={Amiibo} />
         </Switch>
-    </AmiiboContextProvider>
+      </AmiiboContextProvider>
+    </SignupFormContextProvider>
+
   );
 }
 
