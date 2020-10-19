@@ -19,8 +19,7 @@ export const SignupFormContextProvider = (props) => {
             password: props.password,
             passwordMatch: props.passwordMatch
         })
-        console.log('contextSignup', signupForm)
-    }, [props.email, props.password, props.passwordMatch])
+    }, [props.email, props.password, props.passwordMatch, signupForm.email, signupForm.password, signupForm.passwordMatch])
 
     return (
         <SignupFormContext.Provider value={signupForm}>

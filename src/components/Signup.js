@@ -1,8 +1,9 @@
 import { Button, TextField } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik } from 'formik';
 import { useSignupFormContext } from '../contexts/SignupFormContext';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles({
@@ -48,7 +49,7 @@ const Signup = () => {
                         <TextField className={classes.textField} value={values.password} onChange={handleChange} onBlur={handleBlur} name="password" error={values.passwordMatch === values.password ? false : true} label="Password" helperText="Password must match" type="password" required/>
                         <TextField className={classes.textField} value={values.passwordMatch} onChange={handleChange} onBlur={handleBlur} name="passwordMatch" error={values.passwordMatch === values.password ? false : true} label="Password-match" helperText="Password must match" type="password" required/>
                         <div className={classes.buttonDiv}>
-                            <Button color="primary" variant="contained" disabled={values.passwordMatch === values.password ? false : true || values.password === '' ? true : false || values.passwordMatch === '' ? true : false || values.email === '' ? true : false} type="submit" >
+                            <Button color="primary" variant="contained" disabled={values.passwordMatch === values.password ? false : true || values.password === '' ? true : false || values.passwordMatch === '' ? true : false || values.email === '' ? true : false} type="submit" component={Link} to="/">
                                 Submit
                             </Button>
                         </div>
