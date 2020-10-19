@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Formik } from 'formik';
 import { useSignupFormContext } from '../contexts/SignupFormContext';
 import { Link } from 'react-router-dom';
-
+import * as yup from 'yup';
 
 const useStyles = makeStyles({
     main: {
@@ -34,22 +34,76 @@ const Signup = () => {
     let formInfo;
 
     const formData = useSignupFormContext(formInfo);
-    
+
     return (
-        <Formik initialValues={{ ...formData }} onSubmit={(data, { resetForm }) => {
-            formInfo = data
-            resetForm();
-            }}>
-            {({ values, handleChange, handleBlur, handleSubmit }) => (
+        <Formik
+            initialValues={{ ...formData }}
+            validationSchema={yup.object().shape({
+                email: yup.string()
+                    .email('Must be a valid email')
+                    .max(50)
+                    .required('Required'),
+                password: yup.string()
+                    .max(50, 'Your password is too long')
+                    .min(6, 'Password must be greater that 6 characters')
+                    .required('Required'),
+                passwordMatch: yup.string()
+                    .max(50, 'Your password is too long')
+                    .min(6, 'Password must be greater that 6 characters')
+                    .required()
+            })}
+            onSubmit={(data, { resetForm }) => {
+                formInfo = data
+                resetForm();
+            }}
+        >
+            {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <div className={classes.innerDiv}>
                         <h2>Signup:</h2>
-                        <p>Please enter you email and password</p>
-                        <TextField className={classes.textField} value={values.email} onChange={handleChange} onBlur={handleBlur} name="email" label="Email" helperText="Must be a valid email" type="email" required/>
-                        <TextField className={classes.textField} value={values.password} onChange={handleChange} onBlur={handleBlur} name="password" error={values.passwordMatch === values.password ? false : true} label="Password" helperText="Password must match" type="password" required/>
-                        <TextField className={classes.textField} value={values.passwordMatch} onChange={handleChange} onBlur={handleBlur} name="passwordMatch" error={values.passwordMatch === values.password ? false : true} label="Password-match" helperText="Password must match" type="password" required/>
+                        <p>Please enter your email and password</p>
+                        <TextField
+                            className={classes.textField}
+                            variant="filled"
+                            value={values.email}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            name="email"
+                            label="Email"
+                            helperText="Must be a valid email"
+                            type="email"
+                            error={Boolean(touched.email && errors.email)}
+                            required
+                        />
+                        <TextField
+                            className={classes.textField}
+                            variant="filled"
+                            value={values.password}
+                            onChange={handleChange}
+                            onBlur={handleBlur} name="password"
+                            error={values.passwordMatch === values.password ? false : true}
+                            label="Password" helperText="Password must match" type="password"
+                            required
+                        />
+                        <TextField
+                            className={classes.textField}
+                            variant="filled"
+                            value={values.passwordMatch}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            name="passwordMatch"
+                            error={values.passwordMatch === values.password ? false : true}
+                            label="Password-match"
+                            helperText="Password must match"
+                            type="password"
+                            required />
                         <div className={classes.buttonDiv}>
-                            <Button color="primary" variant="contained" disabled={values.passwordMatch === values.password ? false : true || values.password === '' ? true : false || values.passwordMatch === '' ? true : false || values.email === '' ? true : false} type="submit" component={Link} to="/">
+                            <Button
+                                color="primary"
+                                variant="contained"
+                                disabled={Boolean(errors.email && errors.password && errors.passwordMatch) || values.email === '' || values.password === '' || values.passwordMatch === ''}
+                                type="submit"
+                                component={Link} to="/">
                                 Submit
                             </Button>
                         </div>
