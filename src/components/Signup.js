@@ -31,13 +31,12 @@ const useStyles = makeStyles({
 
 const Signup = () => {
     const classes = useStyles();
-    let formInfo;
 
-    const formData = useSignupFormContext(formInfo);
+    const signupFormContext = useSignupFormContext();
 
     return (
         <Formik
-            initialValues={{ ...formData }}
+            initialValues={{ email: '', password: '', passwordMatch: '' }}
             validationSchema={yup.object().shape({
                 email: yup.string()
                     .email('Must be a valid email')
@@ -53,7 +52,7 @@ const Signup = () => {
                     .required()
             })}
             onSubmit={(data, { resetForm }) => {
-                formInfo = data
+                signupFormContext.signup();
                 resetForm();
             }}
         >

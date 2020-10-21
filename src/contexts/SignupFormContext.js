@@ -1,28 +1,22 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 const SignupFormContext = createContext({
-    email: '',
-    password: '',
-    passwordMatch: ''
+    authenticated: false,
+    signup: () => {}
 })
 
 export const SignupFormContextProvider = (props) => {
-    const [signupForm, setSignupForm] = useState({
-        email: '',
-        password: '',
-        passwordMatch: ''
-    })
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    useEffect(() => {
-        setSignupForm({
-            email: props.email,
-            password: props.password,
-            passwordMatch: props.passwordMatch
-        })
-    }, [props.email, props.password, props.passwordMatch, signupForm.email, signupForm.password, signupForm.passwordMatch])
+    const signupHandler = () => {
+        setIsAuthenticated(true);
+    }
 
     return (
-        <SignupFormContext.Provider value={signupForm}>
+        <SignupFormContext.Provider value={{
+            authenticated: isAuthenticated,
+            signup: signupHandler
+        }}>
             {props.children}
         </SignupFormContext.Provider>
     )
