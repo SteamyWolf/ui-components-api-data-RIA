@@ -40,7 +40,7 @@ const Signup = () => {
             validationSchema={yup.object().shape({
                 email: yup.string()
                     .email('Must be a valid email')
-                    .max(50)
+                    .max(50, 'Your email is too long')
                     .required('Required'),
                 password: yup.string()
                     .max(50, 'Your password is too long')
@@ -80,8 +80,10 @@ const Signup = () => {
                             value={values.password}
                             onChange={handleChange}
                             onBlur={handleBlur} name="password"
-                            error={values.passwordMatch === values.password ? false : true}
-                            label="Password" helperText="Password must match" type="password"
+                            error={values.passwordMatch === values.password ? false : true || values.password.length > 6}
+                            label="Password" 
+                            helperText="Passwords must match" 
+                            type="password"
                             required
                         />
                         <TextField
@@ -100,7 +102,7 @@ const Signup = () => {
                             <Button
                                 color="primary"
                                 variant="contained"
-                                disabled={Boolean(errors.email && errors.password && errors.passwordMatch) || values.email === '' || values.password === '' || values.passwordMatch === ''}
+                                disabled={Boolean(errors.email && errors.password && errors.passwordMatch) || values.email === '' || values.password === '' || values.passwordMatch === '' || values.password !== values.password}
                                 type="submit"
                                 component={Link} to="/">
                                 Submit
