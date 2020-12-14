@@ -1,69 +1,35 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Course Requirements
 
-## Available Scripts
+1. Effectively use conditional logic and JavaScript array methods(e.g. Filter, Map, Reduce, Find) to render large lists.
+    -  Can be found on line 58 in the Amiibo.js file.
 
-In the project directory, you can run:
+2. Encapsulate your code as React functional components.
+    - All the components are used as a functional component. No class components are used.
 
-### `npm start`
+3. Work with command-line tools and NPM to create and manage your project within a real development toolset.
+    - NPM was used to create the project and the CLI was used.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+4. Allow communication between components using props and the Context API.
+    - I have 2 contexts in the contexts folder named AmiiboContext.js and SignupFormContext.js. Both can be found throughout the app seeing that they are present in the in App.js.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+5. Present a form for user input that provides useful form validation and feedback.
+    - The form is found in the Signup.js file in the components folder. There I use yup and Formik to create form validation for the user to signup. When the user has done so they are navigated to the main page. Feedback can be found starting on line 41.
 
-### `npm test`
+6. Create at least 5 custom components and use it within at least two of your other components.
+    - I have created 5 components in the componets folder. The Hero and Header component are bing used in the App.js file and the other components are being used as routes to naviagte to.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+7. Use a mix of CSS animations and Transition Component transitions to enhance some aspects of your project.
+    - I did not use any animations or transitions in this project but I did add a loading bar that loads only while the data is being fetched from the server. You can see the red bar loading underneath the hero image on the app.
+    - Line 92 of Amiibo.js has the LinearProgress component being used from material-ui.
 
-### `npm run build`
+8. Connect to a server using HTTP and display retrieved data.
+    - I am connecting to the server using axios in the AmiiboContext.js. There I connect to the server using a get request from axios and then sending the data retrieved throughout the app using the context api.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+9. Provide at least 3 different routes with navigation between them using React Router.
+    - The routes can be found in the App.js file. Three routes are found navigating to Login, Signup, and Amiibo components.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+10. Manage your application's state using Hooks and the Context API.
+    - I have 2 contexts to be found in the contexts folder which allows that data to be accessed throughout the app. You can see an example of the useState, useEffect, and the useContext Hooks in the AmiiboContext.js file.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# ui-components-api-data-RIA
+11. Structure, document, and deploy your final project code according to common industry practices.
+    - The code was deployed on Netlify using the build command and is deployed via the public folder. 

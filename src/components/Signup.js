@@ -80,7 +80,7 @@ const Signup = () => {
                             value={values.password}
                             onChange={handleChange}
                             onBlur={handleBlur} name="password"
-                            error={values.passwordMatch === values.password ? false : true || values.password.length > 6}
+                            error={values.passwordMatch === values.password ? false : true}
                             label="Password" 
                             helperText="Passwords must match" 
                             type="password"
